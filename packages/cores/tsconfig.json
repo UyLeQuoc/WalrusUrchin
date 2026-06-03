@@ -1,0 +1,10 @@
+{
+  "extends": "@workspace/ts-config/react.json",
+  "compilerOptions": {
+    "paths": {
+      "@workspace/cores/*": ["./src/*"]
+    }
+  },
+  "include": ["."],
+  "exclude": ["node_modules", "dist"]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@workspace/api",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "build": "tsc --noEmit && bun build src/index.ts --target=node --outdir=dist",
+    "lint": "eslint .",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.14",
+    "@workspace/cores": "workspace:*",
+    "hono": "^4.12.23"
+  },
+  "devDependencies": {
+    "@workspace/eslint-config": "workspace:*",
+    "@workspace/ts-config": "workspace:*",
+    "@types/node": "^24",
+    "eslint": "^10",
+    "prettier": "^3.8.3",
+    "typescript": "~6"
+  }
+}

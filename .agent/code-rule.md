@@ -109,6 +109,8 @@
 ## Review Rules
 
 - Every change should be explainable in terms of the user workflow or system invariant it supports.
+- At the end of every implementation task, run the project's format command and lint command before reporting completion.
+- If format or lint cannot be run, state the exact reason and any remaining risk.
 - Review for type safety, secret leakage, duplicated logic, missing validation, poor naming, and misplaced business logic.
 - Review frontend changes for component/hook separation.
 - Review backend changes for layered design and thin route handlers.

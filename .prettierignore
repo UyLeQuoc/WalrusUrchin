@@ -2,5 +2,6 @@ dist/
 node_modules/
 .turbo/
 coverage/
+bun.lock
 pnpm-lock.yaml
 .pnpm-store/

@@ -1,0 +1,8 @@
+{
+  "extends": "@workspace/ts-config/react.json",
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "include": ["src", "turbo"],
+  "exclude": ["node_modules", "dist"]
+}

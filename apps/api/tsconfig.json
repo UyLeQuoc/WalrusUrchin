@@ -1,0 +1,8 @@
+{
+  "extends": "@workspace/ts-config/node.json",
+  "compilerOptions": {
+    "allowImportingTsExtensions": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

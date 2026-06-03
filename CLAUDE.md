@@ -11,10 +11,11 @@ content (Walrus + Seal), and monetization (Sui Move); fans get passwordless, gas
 The differentiator vs Patreon is a low, **on-chain, transparent** fee, no deplatforming, audience
 ownership, and **portable/composable** access rights.
 
-## Current status — DOCS ONLY
+## Current status — INITIAL SCAFFOLD
 
-There is **no application code yet**. The repo currently contains only `docs/`. This phase is writing the
-spec: PRD + technical references + this file. **Do not scaffold the app unless asked.** Build target is
+The repo now contains the docs plus an initial Bun/Turborepo scaffold: Vite web, Hono API,
+shared `cores`, shared ESLint/TypeScript config packages, and a starter Move contract project.
+Product implementation is still early. **Do not add feature code unless asked.** Build target is
 **Sui testnet** first (Harbor and memwal are testnet/beta).
 
 ## Mandated stack (non-negotiable)
@@ -28,19 +29,22 @@ spec: PRD + technical references + this file. **Do not scaffold the app unless a
 - **zkLogin / Passkey / Enoki** — passwordless auth + sponsored gas.
 - **Frontend = Vite** + React + TypeScript (not Next). **Backend = Hono**, only where a server secret is needed.
 
-## Intended monorepo layout (when code is added)
+## Current scaffold
 
 ```
-apps/web        Vite 8 + React + TS SPA — NEW @mysten/dapp-kit-react v2 + dapp-kit-core. Walrus-Sites deployable.
-apps/api        Hono 4.12 (@hono/node-server) — THE TRUST BOUNDARY (all secrets live here).
-packages/contracts    Sui Move package `walrus_urchin` (Move.toml edition "2024.beta").
+apps/web        Vite 8 + React + TS SPA. Walrus-Sites deployable.
+apps/api        Hono API on port 5000 — THE TRUST BOUNDARY (all secrets live here).
+apps/contracts  Starter Sui Move package `walrus_urchin` (Move.toml edition "2024.beta").
+packages/cores  Shared UI, types, and Zod validations.
+packages/eslint-config  Shared ESLint flat configs.
+packages/ts-config      Shared TypeScript configs.
 packages/move-client  @mysten/codegen TS bindings + Transaction builders.
 packages/sdk          StorageProvider (Harbor + raw-Walrus), Seal helpers, memwal adapter, SuiNS helpers.
-packages/types        shared DTOs + Zod; exports Hono AppType (consumed via hc<AppType>).
-packages/config       shared tsconfig/eslint/tailwind + per-network constants.
+packages/config       Per-network constants.
 ```
-Tooling: **pnpm 11.5 workspaces + Turborepo 2.9**. Full version pins, scaffold commands, and config sketches
-are in [`docs/tech/monorepo.md`](./docs/tech/monorepo.md).
+Tooling: **Bun workspaces + Turborepo 2.9**. The older deep-dive notes live in
+[`docs/tech/monorepo.md`](./docs/tech/monorepo.md); verify them against the current scaffold before relying on
+package-manager details.
 
 ## Architecture invariants (do not violate)
 

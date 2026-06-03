@@ -1,21 +1,23 @@
-# shadcn/ui monorepo template
+# WalrusUrchin
 
-This is a Vite monorepo template with shadcn/ui.
+WalrusUrchin is a Vite monorepo using shadcn/ui components from the shared
+`@workspace/cores` package.
 
 ## Adding components
 
 To add components to your app, run the following command at the root of your `web` app:
 
 ```bash
-pnpm dlx shadcn@latest add button -c apps/web
+bunx --bun shadcn@latest add button -c apps/web
 ```
 
-This will place the ui components in the `packages/ui/src/components` directory.
+This will place shared UI components in the `packages/cores/src/components`
+directory.
 
 ## Using components
 
-To use the components in your app, import them from the `ui` package.
+To use shared components in your app, import them from the `cores` package.
 
 ```tsx
-import { Button } from "@workspace/ui/components/button";
+import { Button } from "@workspace/cores/components/button"
 ```
