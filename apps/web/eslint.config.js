@@ -1,3 +1,7 @@
-import reactConfig from "@workspace/eslint-config/react"
+import { dirname } from "node:path"
+import { fileURLToPath } from "node:url"
+import { createReactConfig } from "@workspace/eslint-config/react"
 
-export default reactConfig
+const tsconfigRootDir = dirname(fileURLToPath(import.meta.url))
+
+export default createReactConfig({ tsconfigRootDir })

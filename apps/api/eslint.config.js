@@ -1,3 +1,7 @@
-import nodeConfig from "@workspace/eslint-config/node"
+import { dirname } from "node:path"
+import { fileURLToPath } from "node:url"
+import { createNodeConfig } from "@workspace/eslint-config/node"
 
-export default nodeConfig
+const tsconfigRootDir = dirname(fileURLToPath(import.meta.url))
+
+export default createNodeConfig({ tsconfigRootDir })
