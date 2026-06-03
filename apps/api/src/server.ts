@@ -2,6 +2,7 @@ import { serve } from "@hono/node-server"
 
 import { createApp } from "./app"
 import { API_HOST, API_PORT } from "./config/server"
+import { logServerReady } from "./logger/startup"
 
 export function startServer() {
   const app = createApp()
@@ -13,7 +14,10 @@ export function startServer() {
       port: API_PORT,
     },
     (info) => {
-      console.log(`Hono API running at http://${API_HOST}:${info.port}`)
+      logServerReady({
+        host: API_HOST,
+        port: info.port,
+      })
     }
   )
 }
