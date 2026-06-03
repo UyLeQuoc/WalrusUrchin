@@ -1,3 +1,5 @@
+Must follow all coding rules in [`.agent/code-rule.md`](./.agent/code-rule.md).
+
 # CLAUDE.md — WalrusUrchin
 
 Project context for Claude Code. Read this first, then [`docs/tech/architecture.md`](./docs/tech/architecture.md).
