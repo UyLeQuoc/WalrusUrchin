@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 
 import { Badge } from "@workspace/cores/components/badge"
 import { Button } from "@workspace/cores/components/button"
+import { cn } from "@workspace/cores/lib/utils"
 import { heroMetrics } from "@/data/landing-page"
 import {
   fadeUpVariants,
@@ -208,7 +209,13 @@ export function HeroSection() {
           >
             {heroTitleLines.map((line) => (
               <span key={line} className="block overflow-hidden">
-                <span className="block">
+                <span
+                  className={cn(
+                    "block w-fit",
+                    line === "Urchin" &&
+                      "mt-2 rounded-[8px] bg-primary px-3 py-2 text-primary-foreground sm:px-4 lg:px-5"
+                  )}
+                >
                   {Array.from(line).map((letter, index) => (
                     <span
                       key={`${line}-${letter}-${index}`}
