@@ -1,10 +1,9 @@
-import { ArrowRightIcon } from "lucide-react"
 import { motion } from "framer-motion"
 
-import { Button } from "@workspace/cores/components/button"
 import { Logo } from "@/components/logo"
 import { navItems } from "@/data/landing-page"
 import { ModeToggle } from "@/components/mode-toggle"
+import { WalletConnectButton } from "@/components/wallet/wallet-connect-button"
 
 export function SiteHeader() {
   return (
@@ -34,12 +33,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <ModeToggle />
-          <Button asChild className="rounded-[8px]" size="lg">
-            <a href="#join">
-              Start now
-              <ArrowRightIcon data-icon="inline-end" aria-hidden="true" />
-            </a>
-          </Button>
+          <WalletConnectButton />
         </div>
       </div>
     </motion.header>

@@ -1,10 +1,10 @@
-import { ArrowRightIcon, CirclePlayIcon, ShieldCheckIcon } from "lucide-react"
+import { CirclePlayIcon, ShieldCheckIcon } from "lucide-react"
 import { motion } from "framer-motion"
 
 import { Badge } from "@workspace/cores/components/badge"
 import { Button } from "@workspace/cores/components/button"
-import { cn } from "@workspace/cores/lib/utils"
 import { heroMetrics } from "@/data/landing-page"
+import { WalletConnectButton } from "@/components/wallet/wallet-connect-button"
 import {
   fadeUpVariants,
   staggerContainerVariants,
@@ -210,11 +210,9 @@ export function HeroSection() {
             {heroTitleLines.map((line) => (
               <span key={line} className="block overflow-hidden">
                 <span
-                  className={cn(
-                    "block w-fit",
-                    line === "Urchin" &&
-                      "mt-2 rounded-[8px] bg-primary px-3 py-2 text-primary-foreground sm:px-4 lg:px-5"
-                  )}
+                  className={
+                    line === "Urchin" ? "mt-2 block w-fit" : "block w-fit"
+                  }
                 >
                   {Array.from(line).map((letter, index) => (
                     <span
@@ -246,18 +244,8 @@ export function HeroSection() {
             data-gsap="hero-actions"
             variants={fadeUpVariants}
           >
-            <Button asChild className="rounded-[8px]" size="lg">
-              <a href="#join">
-                Build a creator page
-                <ArrowRightIcon data-icon="inline-end" aria-hidden="true" />
-              </a>
-            </Button>
-            <Button
-              asChild
-              className="rounded-[8px]"
-              size="lg"
-              variant="outline"
-            >
+            <WalletConnectButton size="lg" />
+            <Button asChild size="lg" variant="outline">
               <a href="#workflow">
                 <CirclePlayIcon data-icon="inline-start" aria-hidden="true" />
                 See workflow

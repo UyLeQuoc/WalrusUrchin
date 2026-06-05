@@ -1,8 +1,9 @@
-import { ArrowRightIcon, BoxesIcon } from "lucide-react"
+import { BoxesIcon } from "lucide-react"
 import { motion } from "framer-motion"
 
 import { Badge } from "@workspace/cores/components/badge"
 import { Button } from "@workspace/cores/components/button"
+import { WalletConnectButton } from "@/components/wallet/wallet-connect-button"
 import {
   fadeUpVariants,
   staggerContainerVariants,
@@ -53,23 +54,8 @@ export function CtaSection() {
           className="flex flex-col gap-3 sm:flex-row lg:shrink-0"
           variants={fadeUpVariants}
         >
-          <Button
-            asChild
-            className="rounded-[8px] bg-background text-foreground hover:bg-background/90"
-            size="lg"
-            variant="secondary"
-          >
-            <a href="#top">
-              Back to top
-              <ArrowRightIcon data-icon="inline-end" aria-hidden="true" />
-            </a>
-          </Button>
-          <Button
-            asChild
-            className="rounded-[8px] border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
-            size="lg"
-            variant="outline"
-          >
+          <WalletConnectButton size="lg" variant="secondary" />
+          <Button asChild size="lg" variant="outline">
             <a href="#stack">
               <BoxesIcon data-icon="inline-start" aria-hidden="true" />
               View stack

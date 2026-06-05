@@ -30,12 +30,7 @@ export function ModeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          aria-label="Toggle theme"
-          className="rounded-[8px]"
-          size="icon"
-          variant="outline"
-        >
+        <Button aria-label="Toggle theme" size="icon" variant="outline">
           <ActiveIcon aria-hidden="true" />
           <span className="sr-only">Toggle theme</span>
         </Button>

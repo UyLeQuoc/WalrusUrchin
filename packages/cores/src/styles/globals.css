@@ -139,6 +139,15 @@
 }
 
 @layer utilities {
+  .wallet-connect-dialog-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: color-mix(in oklch, var(--background), transparent 42%);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
   .landing-grid {
     background-image:
       linear-gradient(

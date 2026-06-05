@@ -40,7 +40,7 @@ export function StackSection() {
                 </p>
                 <Button
                   asChild
-                  className="rounded-[8px] sm:justify-self-end"
+                  className="sm:justify-self-end"
                   size="sm"
                   variant="outline"
                 >
