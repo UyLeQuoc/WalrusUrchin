@@ -2,12 +2,11 @@ import { type ComponentProps, useEffect, useRef, useState } from "react"
 import type { DAppKitConnectModal } from "@mysten/dapp-kit-core/web"
 import { useDAppKit, useWalletConnection } from "@mysten/dapp-kit-react"
 import { ConnectModal } from "@mysten/dapp-kit-react/ui"
+import { Avatar as Web3Avatar } from "web3-avatar-react"
 import {
   CheckIcon,
   ChevronDownIcon,
-  LayoutDashboardIcon,
   LogOutIcon,
-  UserRoundIcon,
   WalletIcon,
 } from "lucide-react"
 
@@ -21,22 +20,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@workspace/cores/components/dropdown-menu"
-import {
-  DASHBOARDS_PATH,
-  DASHBOARD_PATH,
-  PROFILES_PATH,
-  navigateTo,
-} from "@/lib/navigation"
+import { cn } from "@workspace/cores/lib/utils"
+import { formatAddress } from "@/lib/format-address"
 
 type WalletConnectButtonProps = {
   className?: string
-  redirectTo?: string
   size?: ComponentProps<typeof Button>["size"]
   variant?: ComponentProps<typeof Button>["variant"]
-}
-
-function formatAddress(address: string) {
-  return `${address.slice(0, 6)}...${address.slice(-4)}`
 }
 
 const modalOptions = {
@@ -46,35 +36,13 @@ const modalOptions = {
 
 export function WalletConnectButton({
   className,
-  redirectTo = DASHBOARD_PATH,
   size = "default",
   variant = "default",
 }: WalletConnectButtonProps) {
   const dAppKit = useDAppKit()
   const connection = useWalletConnection()
-  const connectedAddress = connection.account?.address
   const modalRef = useRef<DAppKitConnectModal | null>(null)
-  const previousStatus = useRef(connection.status)
-  const hasMounted = useRef(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
-
-  useEffect(() => {
-    const wasConnected = previousStatus.current === "connected"
-    const isConnected = connection.status === "connected"
-
-    previousStatus.current = connection.status
-
-    if (!hasMounted.current) {
-      hasMounted.current = true
-      return
-    }
-
-    if (!isConnected || wasConnected || !connectedAddress) {
-      return
-    }
-
-    navigateTo(redirectTo)
-  }, [connectedAddress, connection.status, redirectTo])
 
   useEffect(() => {
     const modal = modalRef.current
@@ -115,22 +83,28 @@ export function WalletConnectButton({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
-              aria-label={`Connected wallet ${formatAddress(connection.account.address)}`}
-              className={className}
+              aria-label={`Connected wallet ${connection.account.address}`}
+              className={cn("min-w-0 justify-start gap-2", className)}
               size={size}
               variant="outline"
             >
-              <WalletIcon data-icon="inline-start" aria-hidden="true" />
-              {formatAddress(connection.account.address)}
+              <Web3Avatar
+                address={connection.account.address}
+                aria-hidden="true"
+                className="size-5 shrink-0"
+              />
+              <span className="min-w-0 flex-1 truncate text-left">
+                {formatAddress(connection.account.address)}
+              </span>
               <ChevronDownIcon data-icon="inline-end" aria-hidden="true" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">
-            <DropdownMenuLabel>
-              {connection.wallet.name}
-              <span className="mt-0.5 block truncate text-xs text-foreground">
-                {formatAddress(connection.account.address)}
-              </span>
+            <DropdownMenuLabel
+              className="truncate"
+              title={connection.account.address}
+            >
+              {formatAddress(connection.account.address, 10, 8)}
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
@@ -151,17 +125,6 @@ export function WalletConnectButton({
                   {formatAddress(account.address)}
                 </DropdownMenuItem>
               ))}
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem onClick={() => navigateTo(PROFILES_PATH)}>
-                <UserRoundIcon aria-hidden="true" />
-                Profiles
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => navigateTo(DASHBOARDS_PATH)}>
-                <LayoutDashboardIcon aria-hidden="true" />
-                Dashboards
-              </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
